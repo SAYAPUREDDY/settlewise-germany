@@ -117,13 +117,17 @@ export default function ModuleDetailScreen() {
           </SectionCard>
         ) : null}
 
-        {sections.officialLink ? (
-          <SectionCard title="Official link">
-            <Pressable
-              onPress={() => Linking.openURL(sections.officialLink!.url)}
-              accessibilityRole="link">
-              <Text style={styles.link}>{sections.officialLink.label}</Text>
-            </Pressable>
+        {sections.officialLinks && sections.officialLinks.length > 0 ? (
+          <SectionCard title="Official links">
+            {sections.officialLinks.map((link) => (
+              <Pressable
+                key={link.url}
+                onPress={() => Linking.openURL(link.url)}
+                accessibilityRole="link"
+              >
+                <Text style={styles.link}>{link.label}</Text>
+              </Pressable>
+            ))}
           </SectionCard>
         ) : null}
 
